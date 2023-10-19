@@ -1,0 +1,85 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Platform
+  - EnemyPlatform
+  - EnemyPjt
+  - Enemy1
+  - Enemy2
+  - EnemyPjtEFX
+  - Target
+  - EnemyPjtFront
+  - EnemyDroppedPjt
+  - Level2Trigger
+  - SpawnedCreep
+  - TBossTr
+  - SkillPoint
+  - Boss
+  - L1BossLaser
+  - L1BossGrenade
+  - L1BossEB
+  - L1BossFW
+  - L1BossFWX
+  - L1Boss
+  - L1BossDrone
+  - L1BossDL
+  - OnWallVFX_L
+  - OnWallVFX_R
+  - AudioManager
+  - L1BossAtk5Beam
+  - L1BossAnimator
+  - L1BossAtk5Laser
+  - L1BossAtk6Laser
+  - L1BossAtk6Grenade
+  - LeftWall
+  - RightWall
+  - L2Boss
+  - L2BossAnimator
+  - SwitchCamera
+  - HUDCanvas
+  - XuanWuEnd
+  - BGMSlider
+  - SFXSlider
+  - MMBGMSlider
+  - MMSFXSlider
+  - NinaSpawn
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - Player
+  - Water
+  - UI
+  - Enemy
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

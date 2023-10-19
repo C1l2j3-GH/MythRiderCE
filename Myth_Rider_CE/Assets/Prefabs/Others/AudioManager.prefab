@@ -1,0 +1,284 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &962757762513142204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7969063073006507269}
+  - component: {fileID: 8594138868283554922}
+  - component: {fileID: 2777528272804403025}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: AudioManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7969063073006507269
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962757762513142204}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8594138868283554922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962757762513142204}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ed57a2e3117314419bc5ee0042766b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  BGM:
+  - name: Xuanwu boss fight
+    clip: {fileID: 8300000, guid: 440010f042628fa47b45a65ae0e593aa, type: 3}
+    volume: 20
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong boss fight
+    clip: {fileID: 8300000, guid: 859cd946863b5d347a5b33ba4be38efd, type: 3}
+    volume: 20
+    pitch: 1
+    src: {fileID: 0}
+  - name: Tutorial boss fight
+    clip: {fileID: 8300000, guid: 0c3bb2152e5f1c8418879e45b3d32cec, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Tutorial 1
+    clip: {fileID: 8300000, guid: e559b531a0a9b374ab93addc8bb3e914, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Main Menu
+    clip: {fileID: 8300000, guid: 2c1f0634d9ff0f94699880679e355b85, type: 3}
+    volume: 20
+    pitch: 1
+    src: {fileID: 0}
+  SoundEffects:
+  - name: Warning sound effect
+    clip: {fileID: 8300000, guid: e73715d57fe0f7141b0f7414b9ba1d73, type: 3}
+    volume: 25
+    pitch: 0
+    src: {fileID: 0}
+  - name: Nina's jump
+    clip: {fileID: 8300000, guid: aef6cef887a6d2144b630ef8248125c4, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Nina's run
+    clip: {fileID: 8300000, guid: fbc305065ef833b4b9dc7554663688a1, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Nina's shoot
+    clip: {fileID: 8300000, guid: 37c86021b9d68814ca9f75e195faedb0, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Nina's take damage
+    clip: {fileID: 8300000, guid: 8069b1e1b63bad0408308f882049da9f, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Nina's wall jump
+    clip: {fileID: 8300000, guid: a7ba2aba80c1e23488f904c596a05494, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Xuanwu's laser beam
+    clip: {fileID: 8300000, guid: 44c14e58f00e26c4e9ffa270cf06f259, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Xuanwu's fire grenade
+    clip: {fileID: 8300000, guid: 60baad49e1740c64890a5f7f97cf95b0, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Xuanwu's firewave
+    clip: {fileID: 8300000, guid: 0cae1ac713ba0f941b4f9e49bac99ded, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Xuanwu's laser beam 2
+    clip: {fileID: 8300000, guid: 2bc9cc2c07566984b901e78c8ef8e1fa, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Xuanwu's Drone laser
+    clip: {fileID: 8300000, guid: 6a6a4ffd98cf1184d97f6d88b26c566f, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Xuanwu's drone's warning
+    clip: {fileID: 8300000, guid: 77147815f84eb9c4e99a1f3d11e5949a, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Xuanwu's fire combine
+    clip: {fileID: 8300000, guid: df87a888cc9d84b4b927fc6d2f36e81b, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's tornado projectile
+    clip: {fileID: 8300000, guid: c84145400eb7f7c44934b4053fb20d15, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's fly up
+    clip: {fileID: 8300000, guid: e4525c2eeb6df3f41af9941002108d5b, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's player track
+    clip: {fileID: 8300000, guid: fa63324d2b337854e84d232a1ed201c1, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's ground pround
+    clip: {fileID: 8300000, guid: d9c88e7503a9a7f4f86459205c288531, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's 3.1 slash attack
+    clip: {fileID: 8300000, guid: 2af171d6aae277e4397ca63f738ed728, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's 3.2 slash attack
+    clip: {fileID: 8300000, guid: c0e966ed83be2f2459d3b3af57a183f6, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's 4th attack dash
+    clip: {fileID: 8300000, guid: 17c1005d3cdf10f49942e9590ff59fbf, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  - name: Qinglong's limit break thunder VFX
+    clip: {fileID: 8300000, guid: ebe1d43563e37c84aba30c0cc65777fd, type: 3}
+    volume: 25
+    pitch: 1
+    src: {fileID: 0}
+  _bgmMixer: {fileID: -903999608214744587, guid: b0bd0a15d601aaa4e9154646b0a7f664, type: 2}
+  _sfxMixer: {fileID: 5886786383183864491, guid: b0bd0a15d601aaa4e9154646b0a7f664, type: 2}
+  _mixer: {fileID: 24100000, guid: b0bd0a15d601aaa4e9154646b0a7f664, type: 2}
+  _bgmSlider: {fileID: 0}
+  _sfxSlider: {fileID: 0}
+  _bgmSliderMM: {fileID: 0}
+  _sfxSliderMM: {fileID: 0}
+  _bgmSliderValue: 0
+  _sfxSliderValue: 0
+--- !u!82 &2777528272804403025
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962757762513142204}
+  m_Enabled: 0
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
