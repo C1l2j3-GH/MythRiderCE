@@ -48,12 +48,12 @@ MonoBehaviour:
   BGM:
   - name: Xuanwu boss fight
     clip: {fileID: 8300000, guid: 440010f042628fa47b45a65ae0e593aa, type: 3}
-    volume: 20
+    volume: 10
     pitch: 1
     src: {fileID: 0}
   - name: Qinglong boss fight
     clip: {fileID: 8300000, guid: 859cd946863b5d347a5b33ba4be38efd, type: 3}
-    volume: 20
+    volume: 10
     pitch: 1
     src: {fileID: 0}
   - name: Tutorial boss fight
@@ -63,12 +63,12 @@ MonoBehaviour:
     src: {fileID: 0}
   - name: Tutorial 1
     clip: {fileID: 8300000, guid: e559b531a0a9b374ab93addc8bb3e914, type: 3}
-    volume: 25
+    volume: 10
     pitch: 1
     src: {fileID: 0}
   - name: Main Menu
     clip: {fileID: 8300000, guid: 2c1f0634d9ff0f94699880679e355b85, type: 3}
-    volume: 20
+    volume: 1
     pitch: 1
     src: {fileID: 0}
   SoundEffects:
@@ -94,7 +94,7 @@ MonoBehaviour:
     src: {fileID: 0}
   - name: Nina's take damage
     clip: {fileID: 8300000, guid: 8069b1e1b63bad0408308f882049da9f, type: 3}
-    volume: 25
+    volume: 15
     pitch: 1
     src: {fileID: 0}
   - name: Nina's wall jump
@@ -119,7 +119,7 @@ MonoBehaviour:
     src: {fileID: 0}
   - name: Xuanwu's laser beam 2
     clip: {fileID: 8300000, guid: 2bc9cc2c07566984b901e78c8ef8e1fa, type: 3}
-    volume: 25
+    volume: 5
     pitch: 1
     src: {fileID: 0}
   - name: Xuanwu's Drone laser

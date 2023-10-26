@@ -268,12 +268,12 @@ MonoBehaviour:
   _l2BossMoveSpd: 20
   _l1BossRotateSpd: 10
   _l2BossMinDistance: 0.1
-  _atk1CD: 5
-  _atk2CD: 5
-  _atk3CD: 5
-  _atk4CD: 5
-  _atk5CD: 5
-  _atk6CD: 5
+  _atk1CD: 3
+  _atk2CD: 3
+  _atk3CD: 3
+  _atk4CD: 3
+  _atk5CD: 3
+  _atk6CD: 3
   _l2BossAtk2LRMoveSpd: 30
   _l2BossAtk2UpMoveSpd: 10
   _l2BossAtk2SlamMoveSpd: 50
@@ -287,7 +287,7 @@ MonoBehaviour:
   _lbThunderCD: 3
   _lbThunderDuration: 1
   _lbThunderDelay: 1
-  _l2BossAtk5MoveSpd: 40
+  _l2BossAtk5MoveSpd: 35
   _atk5MovementCD: 1
   _isSpawningL2Boss: 0
   _l2BossRb2D: {fileID: 0}

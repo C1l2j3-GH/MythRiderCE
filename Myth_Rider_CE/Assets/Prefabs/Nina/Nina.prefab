@@ -1125,22 +1125,27 @@ MonoBehaviour:
   _l2bossGO: {fileID: 0}
   _hpSliderGO: {fileID: 0}
   _menus: {fileID: 0}
-  maxPlayerHP: 200
+  _l2LeftBorder: {fileID: 0}
+  _l2RightBorder: {fileID: 0}
+  _l2DropBorder: {fileID: 0}
+  maxPlayerHP: 300
   currentPlayerHP: 0
   hpRegenRate: 10
   maxPlayerMP: 150
   currentPlayerMP: 0
-  mpRegenRate: 10
+  mpRegenRate: 15
   _spriteColor: {r: 0, g: 0, b: 0, a: 0}
   _ninaSpawnPoss:
   - {x: -14.75, y: -3.16, z: 0}
   - {x: -6.5, y: 3.276, z: 0}
   - {x: -4, y: 3.276, z: 0}
   - {x: 0, y: 3.4, z: 0}
+  _ninaSpawnPosTf: {fileID: 0}
   playerDied: 0
   enemyDied: 0
   _nina_Animator: {fileID: 0}
   _ninaSR: {fileID: 0}
+  _canHPRegen: 0
   _cracked: 0
   _tempMaxHP: 0
   _tempCurrentHP: 0
@@ -1163,21 +1168,18 @@ MonoBehaviour:
   _playerRMoveSpeed: 8
   playerJumpHeight: 500
   _slideSpeed: 20
-  _playerDashVel: 20
+  _playerDashVel: 25
   _dashDuration: 0.5
   _totalDashCD: 1
   _kbForce: 100
   _kbCD: 0.5
-  _kbInviTime: 2
+  _kbInviTime: 1.5
   _nina_Animator: {fileID: 0}
   _horiDir: 0
   _vertiDir: 0
   _enemyDir: {x: 0, y: 0}
-  _isOnWall: 0
   _dashTimerCount: 0
   _dashCDCount: 0
-  _isDashCD: 0
-  _canDash: 1
   _dashDir: {x: 0, y: 0}
 --- !u!114 &6753600493236499701
 MonoBehaviour:
@@ -1206,7 +1208,6 @@ MonoBehaviour:
   _chargePercent: 0
   currentPlayerHP: 0
   currentPlayerMP: 0
-  _isCharging: 0
   _nina_Animator: {fileID: 0}
   currentRangedAtk: 0
   _currentChargedAtk: 0

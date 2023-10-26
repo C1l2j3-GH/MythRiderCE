@@ -45,15 +45,15 @@ public class Nina_Movement : MonoBehaviour
 
     [Tooltip("Condition Check Debug")]
     public static bool isGrounded;
-    [SerializeField] private bool _isOnWall;
+    public static bool _isOnWall;
     public static bool _isFacingRight;
     public static bool startFollow;
 
     [Tooltip("Dash Debug")]
     [SerializeField] private float _dashTimerCount;
     [SerializeField] private float _dashCDCount;
-    [SerializeField] private bool _isDashCD = false;
-    [SerializeField] private bool _canDash = true;
+    public static bool _isDashCD = false;
+    public static bool _canDash = true;
     [SerializeField] private Vector2 _dashDir;
 
     //public static bool isDashing; //By Khai Wen, apply animator
@@ -127,10 +127,17 @@ public class Nina_Movement : MonoBehaviour
                     FlipPlayer();
                 }
 
-                if (_isJumping || _isDashing || _isDropping || _isOnWall)
+                if (_isJumping || _isDropping || _isOnWall)
                 {
                     IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isIdle, false);
                     IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isMoving, false);
+                }
+                else if (_isDashing)
+                {
+                    IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isDashing, false);
+                    IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isMoving, true);
+                    _isDashing = false;
+                    _isDashCD = true;
                 }
                 else if (!_isJumping && !_isDashing && !_isDropping)
                 {
@@ -142,7 +149,6 @@ public class Nina_Movement : MonoBehaviour
                         AudioManager.amInstance.PlaySFLooped("Nina's run");
                     }
                 }
-
             }
         }
         if (!Nina_Attack._isOnRightWall)
@@ -150,8 +156,6 @@ public class Nina_Movement : MonoBehaviour
             if (Input.GetKey(KeyCode.D))
             {
                 _isMoving = true;
-
-
 
                 _horiDir = 1;
                 _playerRB2D.velocity = new Vector2(_horiDir * _playerRMoveSpeed, _playerRB2D.velocity.y);
@@ -161,10 +165,17 @@ public class Nina_Movement : MonoBehaviour
                     FlipPlayer();
                 }
 
-                if (_isJumping || _isDashing || _isDropping || _isOnWall)
+                if (_isJumping || _isDropping || _isOnWall)
                 {
                     IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isIdle, false);
                     IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isMoving, false);
+                }
+                else if (_isDashing)
+                {
+                    IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isDashing, false);
+                    IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isMoving, true);
+                    _isDashing = false;
+                    _isDashCD = true;
                 }
                 else if (!_isJumping && !_isDashing && !_isDropping)
                 {
@@ -176,7 +187,6 @@ public class Nina_Movement : MonoBehaviour
                         AudioManager.amInstance.PlaySFLooped("Nina's run");
                     }
                 }
-
             }
         }
 
@@ -266,12 +276,15 @@ public class Nina_Movement : MonoBehaviour
                 ////_playerRB2D.velocity = new Vector2(0, 0);
                 _playerRB2D.velocity = new Vector2(0, _playerRB2D.velocity.y);
                 _isDashCD = true;
-                _dashTimerCount = 0; 
+                _dashTimerCount = 0;
+                IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isIdle, true);
             }
         }
         else if (!_isDashing && _isDashCD)
         {
             DashCD();
+            //IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isIdle, true);
+            IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isDashing, false);
         }
     }
     public void DashCD()
@@ -284,9 +297,6 @@ public class Nina_Movement : MonoBehaviour
             _isDashCD = false;
             _canDash = true;
             _dashCDCount = 0;
-            
-            IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isIdle, true);
-            IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isDashing, false);
         }
     }
 
@@ -363,6 +373,23 @@ public class Nina_Movement : MonoBehaviour
         IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isTakeDamage, false);
     }
 
+    public static void InitializeMovement()
+    {
+        _isMoving = false;
+        _isJumping = false;
+        _isDropping = false;
+        _isDashing = false;
+        _isLWallSliding = false;
+        _isRWallSliding = false;
+        //isGrounded = false;
+        _isOnWall = false;
+        //_isFacingRight = false;
+        startFollow = false;
+        _isDashCD = false;
+        _canDash = true;
+        Nina_Effects._isKnocked = false;
+        Nina_Effects._isKnocking = false;
+    }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
@@ -370,9 +397,24 @@ public class Nina_Movement : MonoBehaviour
             isGrounded = true;
         }
 
-        else if (collision.gameObject.CompareTag("LeftWall") || collision.gameObject.CompareTag("RightWall"))
+
+        if (collision.gameObject.CompareTag("LeftWall") || collision.gameObject.CompareTag("RightWall"))
         {
-            _isOnWall = true;
+            if (isGrounded != true)
+            {
+                _isOnWall = true;
+            }
+            else
+            {
+                if (_isDashing)
+                {
+                    _playerRB2D.velocity = new Vector2(0, _playerRB2D.velocity.y);
+                    IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isIdle, true);
+                    IFNina_Animation.SetAnimatorBool(_nina_Animator, IFNina_Animation._isDashing, false);
+                    _isDashing = false;
+                    _isDashCD = true;
+                }
+            }
         }
     }
     private void OnCollisionStay2D(Collision2D collision) // detecting if player is grounded
@@ -382,9 +424,13 @@ public class Nina_Movement : MonoBehaviour
             isGrounded = true;
         }
 
-        else if (collision.gameObject.CompareTag("LeftWall") || collision.gameObject.CompareTag("RightWall"))
+
+        if (collision.gameObject.CompareTag("LeftWall") || collision.gameObject.CompareTag("RightWall"))
         {
-            _isOnWall = true;
+            if (isGrounded != true)
+            {
+                _isOnWall = true;
+            }
         }
     }
 
@@ -396,7 +442,7 @@ public class Nina_Movement : MonoBehaviour
             isGrounded = false;
         }
 
-        else if (collision.gameObject.CompareTag("LeftWall") || collision.gameObject.CompareTag("RightWall"))
+        if (collision.gameObject.CompareTag("LeftWall") || collision.gameObject.CompareTag("RightWall"))
         {
             _isOnWall = false;
         }

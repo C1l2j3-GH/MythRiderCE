@@ -167,9 +167,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd28014baa3810c4ca79f1c59884f0d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _contDamage: 40
   _l1BossAnimtr: {fileID: 0}
   _laserAnimtr: {fileID: 0}
-  pjtDamage: 50
   _rayLength: 50
   _posOffset: {x: 1.75, y: 0.2}
   _rayDirection: {x: -1, y: 0}

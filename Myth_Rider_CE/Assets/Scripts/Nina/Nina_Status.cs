@@ -320,9 +320,7 @@ public class Nina_Status : MonoBehaviour
         if(Menus._currentScene.buildIndex == 2 && !_isSpawnedInT1)
         {
             //gameObject.transform.position = _ninaSpawnPoss[0];
-            _ninaSpawnPosTf = GameObject.FindGameObjectWithTag("NinaSpawn").transform;
 
-            gameObject.transform.position = _ninaSpawnPosTf.position;
 
             //if (_tBossGO != null && _tBossUI != null) //Turn Back On
             //{
@@ -330,12 +328,14 @@ public class Nina_Status : MonoBehaviour
 
             //    EnableTBoss(false);
             //}
-            _tBossUI.SetActive(false);
-            _l1bossUI.SetActive(false);
-            _l2bossUI.SetActive(false);
-            EnableTBoss(false);
-            EnableL1Boss(false);
-            EnableL2Boss(false);
+            InitializeBossUIs();
+            InitializeBosses();
+            Nina_Movement.InitializeMovement();
+            Nina_Attack.InitializeAttack();
+
+            _ninaSpawnPosTf = GameObject.FindGameObjectWithTag("NinaSpawn").transform;
+
+            gameObject.transform.position = _ninaSpawnPosTf.position;
             //Time.timeScale = 1f;
 
             _isSpawnedInT1 = true;
@@ -344,9 +344,7 @@ public class Nina_Status : MonoBehaviour
         {
             //gameObject.transform.position = _ninaSpawnPoss[1];
 
-            _ninaSpawnPosTf = GameObject.FindGameObjectWithTag("NinaSpawn").transform;
 
-            gameObject.transform.position = _ninaSpawnPosTf.position;
 
             //if (_tBossGO != null && _tBossUI != null) //Turn Back On
             //{
@@ -354,44 +352,40 @@ public class Nina_Status : MonoBehaviour
 
             //    EnableTBoss(false);
             //}
-            _tBossUI.SetActive(false);
-            _l1bossUI.SetActive(false);
-            _l2bossUI.SetActive(false);
+            InitializeBossUIs();
             _hpSliderGO.SetActive(false);
-            EnableTBoss(false);
-            EnableL1Boss(false);
-            EnableL2Boss(false);
+            InitializeBosses();
+            Nina_Movement.InitializeMovement();
+            Nina_Attack.InitializeAttack();
             //Time.timeScale = 1f;
+            _ninaSpawnPosTf = GameObject.FindGameObjectWithTag("NinaSpawn").transform;
+
+            gameObject.transform.position = _ninaSpawnPosTf.position;
 
             _isSpawnedInL1 = true;
         }
         if (Menus._currentScene.buildIndex == 4 && !_isSpawnedInL2)
         {
             //gameObject.transform.position = _ninaSpawnPoss[2];
+            InitializeBossUIs();
+            _hpSliderGO.SetActive(false);
+            InitializeBosses();
+            Nina_Movement.InitializeMovement();
+            Nina_Attack.InitializeAttack();
 
             _ninaSpawnPosTf = GameObject.FindGameObjectWithTag("NinaSpawn").transform;
 
             gameObject.transform.position = _ninaSpawnPosTf.position;
 
-            _tBossUI.SetActive(false);
-            _l1bossUI.SetActive(false);
-            _l2bossUI.SetActive(false);
-            _hpSliderGO.SetActive(false);
-            EnableTBoss(false);
-            EnableL1Boss(false);
-            EnableL2Boss(false);
-
             _isSpawnedInL2 = true;
         }
         if (Menus._currentScene.buildIndex == 5 && !_isSpawnedInL3)
         {
-            EnableTBoss(false);
-            EnableL1Boss(false);
-            EnableL2Boss(false);
-            _tBossUI.SetActive(false);
-            _l1bossUI.SetActive(false);
-            _l2bossUI.SetActive(false);
+            InitializeBosses();
+            InitializeBossUIs();
             _hpSliderGO.SetActive(false);
+            Nina_Movement.InitializeMovement();
+            Nina_Attack.InitializeAttack();
 
             //gameObject.transform.position = _ninaSpawnPoss[3];
 
@@ -407,8 +401,11 @@ public class Nina_Status : MonoBehaviour
     {
         if (collision.GetComponent<DealDamageOnce_E>() != null)
         {
-            currentPlayerHP -= collision.GetComponent<DealDamageOnce_E>()._onceDamage;
-            isAttacked = true;
+            if (!Nina_Effects._isKnocking)
+            {
+                currentPlayerHP -= collision.GetComponent<DealDamageOnce_E>()._onceDamage;
+                isAttacked = true;
+            }
         }
         #region Old Compare Tags
         //if (collision.gameObject.CompareTag("EnemyPjt"))
@@ -529,8 +526,12 @@ public class Nina_Status : MonoBehaviour
         #endregion
         if(collision.GetComponent<DealDamageCont_E>() != null)
         {
-            currentPlayerHP -= collision.GetComponent<DealDamageCont_E>()._contDamage * Time.deltaTime;
-            isAttacked = true;
+            if (!Nina_Effects._isKnocking)
+            {
+                //currentPlayerHP -= collision.GetComponent<DealDamageCont_E>()._contDamage * Time.deltaTime;
+                currentPlayerHP -= collision.GetComponent<DealDamageCont_E>()._contDamage;
+                isAttacked = true;
+            }
         }
 
         if (collision.gameObject.CompareTag("TBossTr"))
@@ -680,6 +681,19 @@ public class Nina_Status : MonoBehaviour
             _l2RightBorder.SetActive(bossEnabled);
             ////_chargedAtkUIGO.SetActive(bossEnabled); // Charge Attack UI
         }
+    }
+
+    private void InitializeBosses()
+    {
+        EnableTBoss(false);
+        EnableL1Boss(false);
+        EnableL2Boss(false);
+    }
+    private void InitializeBossUIs()
+    {
+        _tBossUI.SetActive(false);
+        _l1bossUI.SetActive(false);
+        _l2bossUI.SetActive(false);
     }
 
     #region Crack

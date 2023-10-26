@@ -164,6 +164,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5332590241f6d6a4581be8429166e9b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _contDamage: 40
   _ninaGO: {fileID: 0}
   _frontFP: {fileID: 6213767630460874033}
   _bottomFP: {fileID: 395109858842945018}
@@ -193,22 +194,21 @@ MonoBehaviour:
   _atk6WarnSignPrefab: {fileID: 762928630462644110, guid: a063349c41fb63145a7de2048ca8e3c6, type: 3}
   _atk6LaserPrefab: {fileID: 2715537645789944362, guid: b27acfa230c0e0542ab71216806b2339, type: 3}
   _atk6GrenadePrefab: {fileID: 2715537645789944362, guid: ca5996c0a3ca87f409804f41478f65b1, type: 3}
-  _maxL1BossHP: 2000
+  _maxL1BossHP: 1750
   _currentL1BossHP: 1
   _l1BossHPRegenRate: 0
-  _l1BossDamage: 50
   _atk6Threshold: 3
   _isResetAnim: 0
   _startAtk: 0
   _l1BossMoveSpd: 2
   _l1BossRotateSpd: 10
   _l1BossMinDistance: 0.1
-  _atk1CD: 2
-  _atk2CD: 2
-  _atk3CD: 2
-  _atk4CD: 2
-  _atk5CD: 2
-  _atk6CD: 2
+  _atk1CD: 3.5
+  _atk2CD: 3.5
+  _atk3CD: 3.5
+  _atk4CD: 3.5
+  _atk5CD: 3.5
+  _atk6CD: 3.5
   _atk1LaserScaleCD: 0
   _atk1LaserScaleSpd: 0
   _loopNum: 10
@@ -470,6 +470,7 @@ MonoBehaviour:
   _l1BossAI: {fileID: -8712636881259849891}
   _deathShine: {fileID: 6554686684203024929}
   _cutSceneGO: {fileID: 0}
+  _menus: {fileID: 0}
 --- !u!1 &5531219614361125666
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,6 +728,7 @@ MonoBehaviour:
   _l1BossAI: {fileID: -8712636881259849891}
   _deathShine: {fileID: 6554686684203024929}
   _cutSceneGO: {fileID: 0}
+  _menus: {fileID: 0}
 --- !u!1 &8504030406019196923
 GameObject:
   m_ObjectHideFlags: 0

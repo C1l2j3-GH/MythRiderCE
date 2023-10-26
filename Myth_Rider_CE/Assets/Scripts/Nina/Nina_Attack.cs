@@ -25,7 +25,7 @@ public class Nina_Attack : MonoBehaviour
 
     [SerializeField] private float currentPlayerHP;
     [SerializeField] private float currentPlayerMP;
-    [SerializeField] private bool _isCharging = false;
+    public static bool _isCharging = false;
 
     [Space(10f)]
     [SerializeField] private Animator _nina_Animator;
@@ -102,6 +102,7 @@ public class Nina_Attack : MonoBehaviour
                 ////FireNormalAtk();
                 CheckNormalPjtDir();
                 isShooting = false;
+                _chargePE.SetActive(false);
                 ShootingAnimation();
                 StartCoroutine(ShootingAnimCD(_shootingAnimCD, _nina_Animator));
             }
@@ -188,7 +189,6 @@ public class Nina_Attack : MonoBehaviour
         {
             AudioManager.amInstance.PlaySF("Nina's shoot");
         }
-        _chargePE.SetActive(false);
         _isCharging = false;
         _chargePercent = 0;
         //if (currentRangedAtk != 0) // if current bullet type is not default
@@ -226,7 +226,6 @@ public class Nina_Attack : MonoBehaviour
         {
             AudioManager.amInstance.PlaySF("Nina's shoot");
         }
-        _chargePE.SetActive(false);
         _isCharging = false;
         _chargePercent = 0;
 
@@ -250,6 +249,7 @@ public class Nina_Attack : MonoBehaviour
             //FireChargedAtk();
             CheckChargedPjtDir();
             isShooting = false;
+            _chargePE.SetActive(false);
             ShootingAnimation();
             StartCoroutine(ShootingAnimCD(_shootingAnimCD, _nina_Animator));
 
@@ -326,6 +326,14 @@ public class Nina_Attack : MonoBehaviour
         IFNina_Animation.SetAnimatorBool(nina_Animator, IFNina_Animation._isDashShooting, false);
         IFNina_Animation.SetAnimatorBool(nina_Animator, IFNina_Animation._isLWSShooting, false);
         IFNina_Animation.SetAnimatorBool(nina_Animator, IFNina_Animation._isRWSShooting, false);
+    }
+
+    public static void InitializeAttack()
+    {
+        _isCharging = false;
+        isShooting = false;
+        _isOnLeftWall = false;
+        _isOnRightWall = false;
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
