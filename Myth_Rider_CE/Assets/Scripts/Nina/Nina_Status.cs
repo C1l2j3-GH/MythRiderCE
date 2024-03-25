@@ -4,7 +4,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Nina_Status : MonoBehaviour
+public class Nina_Status : MonoBehaviour, IDataPersistence
 {
     [Header("Status")]
     [Header("Preset")]
@@ -695,6 +695,19 @@ public class Nina_Status : MonoBehaviour
         _l1bossUI.SetActive(false);
         _l2bossUI.SetActive(false);
     }
+
+    #region Save & Load
+    // Save & Load Data
+    public void LoadData(GameData data)
+    {
+        _currentSP = data._sdCurrentSP;
+    }
+
+    public void SaveData(GameData data)
+    {
+        data._sdCurrentSP = _currentSP;
+    }
+    #endregion
 
     #region Crack
     private void BossHalfHP()
