@@ -335,7 +335,8 @@ public class Nina_Status : MonoBehaviour, IDataPersistence
 
             _ninaSpawnPosTf = GameObject.FindGameObjectWithTag("NinaSpawn").transform;
 
-            gameObject.transform.position = _ninaSpawnPosTf.position;
+            ////gameObject.transform.position = _ninaSpawnPosTf.position;
+            
             //Time.timeScale = 1f;
 
             _isSpawnedInT1 = true;
@@ -701,11 +702,13 @@ public class Nina_Status : MonoBehaviour, IDataPersistence
     public void LoadData(GameData data)
     {
         _currentSP = data._sdCurrentSP;
+        this.transform.position = data._ninaPos;
     }
 
     public void SaveData(GameData data)
     {
         data._sdCurrentSP = _currentSP;
+        data._ninaPos = this.transform.position;
     }
     #endregion
 
