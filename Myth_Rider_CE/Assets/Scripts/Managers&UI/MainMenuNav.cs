@@ -3,8 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 public class MainMenuNav : MonoBehaviour
 {
+    [Header("Menu Buttons")]
+    [SerializeField] private Button _newGameButton;
+    [SerializeField] private Button _continueGameButton;
+
     [SerializeField] private GameObject _mainMenuUI;
     [SerializeField] private GameObject _optionsMenuUI;
 
@@ -15,6 +20,11 @@ public class MainMenuNav : MonoBehaviour
         {
             AudioManager.amInstance.PlayBGM("Main Menu");
         }
+
+        if (!DPManager._instance.HasGameData())
+        {
+            _continueGameButton.interactable = false;
+        }
     }
 
     // Update is called once per frame
@@ -23,9 +33,18 @@ public class MainMenuNav : MonoBehaviour
         
     }
 
-    public void LoadTutorial1() //by khai wen to put main menu call tutorial level
+    public void StartNewGame() //by khai wen to put main menu call tutorial level
     {
-        SceneManager.LoadScene(2);
+        ////SceneManager.LoadScene(2);
+        DisableMenuButtons();
+        DPManager._instance.NewGame();
+        SceneManager.LoadSceneAsync(2);
+    }
+
+    public void ContinueGame()
+    {
+        DisableMenuButtons();
+        SceneManager.LoadSceneAsync(2);
     }
 
     public void EnableOptions() //by khai wen to put main menu call tutorial level
@@ -43,5 +62,11 @@ public class MainMenuNav : MonoBehaviour
     public void QuitGame() //by khai wen to put main menu call tutorial level
     {
         Application.Quit();
+    }
+
+    private void DisableMenuButtons()
+    {
+        _newGameButton.interactable = false;
+        _continueGameButton.interactable = false;
     }
 }
