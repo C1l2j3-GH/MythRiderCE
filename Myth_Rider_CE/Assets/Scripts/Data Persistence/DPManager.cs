@@ -8,7 +8,10 @@ using UnityEngine.SceneManagement;
 public class DPManager : MonoBehaviour
 {
     [Header("Debugging")]
+    [SerializeField] private bool _disableDP = false;
     [SerializeField] private bool _initializeDataIfNull = false;
+    [SerializeField] private bool _overrideSelectedProfileID = false;
+    [SerializeField] private string _testSelectedProfileID = "test";
 
     [Header("File Storage Config")]
     [SerializeField] private string _fileName;
@@ -18,6 +21,7 @@ public class DPManager : MonoBehaviour
     private List<IDataPersistence> _dpObjects;
     private FileDataHandler _dataHandler;
 
+    private string _selectedProfileID = "";
     private void Awake()
     {
         // Singleton instance
@@ -30,7 +34,20 @@ public class DPManager : MonoBehaviour
         _instance = this;
         DontDestroyOnLoad(this.gameObject);
 
+        if(_disableDP)
+        {
+            Debug.LogWarning("Data Persistence is currently disabled!");
+        }
+
         this._dataHandler = new FileDataHandler(Application.persistentDataPath, _fileName);
+
+        this._selectedProfileID = _dataHandler.GetMostRecentlyUpdatedProfileID();
+
+        if(_overrideSelectedProfileID)
+        {
+            this._selectedProfileID = _testSelectedProfileID;
+            Debug.LogWarning("Overrode selected profile ID with test ID: " + _testSelectedProfileID);
+        }
     }
 
     private void OnEnable()
@@ -62,6 +79,11 @@ public class DPManager : MonoBehaviour
 
     }
 
+    public void ChangeSelectedProfileID(string newProfileID)
+    {
+        this._selectedProfileID = newProfileID;
+        LoadGame();
+    }
     public void NewGame()
     {
         this._gameData = new GameData();
@@ -69,7 +91,12 @@ public class DPManager : MonoBehaviour
 
     public void LoadGame()
     {
-        this._gameData = _dataHandler.Load();
+        if(_disableDP)
+        {
+            return;
+        }
+
+        this._gameData = _dataHandler.Load(_selectedProfileID);
 
         if(this._gameData == null && _initializeDataIfNull)
         {
@@ -93,6 +120,10 @@ public class DPManager : MonoBehaviour
 
     public void SaveGame()
     {
+        if (_disableDP)
+        {
+            return;
+        }
         // if we don't have any data to save, log a warning here
         if (this._gameData == null)
         {
@@ -108,7 +139,9 @@ public class DPManager : MonoBehaviour
         Debug.Log("Saved Current Skill Point = " + _gameData._sdCurrentSP);
         Debug.Log("File saved in = " + Application.persistentDataPath);
 
-        _dataHandler.Save(_gameData);
+        _gameData._lastUpdated = System.DateTime.Now.ToBinary();
+
+        _dataHandler.Save(_gameData, _selectedProfileID);
     }
 
     private void OnApplicationQuit()
@@ -126,5 +159,10 @@ public class DPManager : MonoBehaviour
     public bool HasGameData()
     {
         return _gameData != null;
+    }
+
+    public Dictionary<string, GameData> GetAllProfilesGameData()
+    {
+        return _dataHandler.LoadAllProfiles();
     }
 }
