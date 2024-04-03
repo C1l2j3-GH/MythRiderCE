@@ -703,12 +703,14 @@ public class Nina_Status : MonoBehaviour, IDataPersistence
     {
         _currentSP = data._sdCurrentSP;
         this.transform.position = data._ninaPos;
+        Menus._currentScene.name = data._mapName;
     }
 
     public void SaveData(GameData data)
     {
         data._sdCurrentSP = _currentSP;
         data._ninaPos = this.transform.position;
+        data._mapName = Menus._currentScene.name;
     }
     #endregion
 
