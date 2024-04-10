@@ -16,6 +16,9 @@ public class DPManager : MonoBehaviour
     [Header("File Storage Config")]
     [SerializeField] private string _fileName;
 
+    [Header("Auto Saving Configuration")]
+    //[SerializeField]
+
     private GameData _gameData;
     public static DPManager _instance { get; private set; }
     private List<IDataPersistence> _dpObjects;
@@ -53,13 +56,12 @@ public class DPManager : MonoBehaviour
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
-        SceneManager.sceneUnloaded += OnSceneUnloaded;
+        //SceneManager.sceneUnloaded += OnSceneUnloaded; // Save for study
     }
 
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
-        SceneManager.sceneUnloaded -= OnSceneUnloaded;
     }
     public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
@@ -67,12 +69,6 @@ public class DPManager : MonoBehaviour
         //Save to default Path set by Unity
         this._dpObjects = FindAllDPObjects();
         LoadGame();
-    }
-
-    public void OnSceneUnloaded(Scene scene)
-    {
-        //Debug.Log("OnSceneUnloaded Called");
-        SaveGame();
     }
     private void Start()
     {
@@ -151,7 +147,7 @@ public class DPManager : MonoBehaviour
 
     private List<IDataPersistence> FindAllDPObjects()
     {
-        IEnumerable<IDataPersistence> dpObjects = FindObjectsOfType<MonoBehaviour>().OfType<IDataPersistence>();
+        IEnumerable<IDataPersistence> dpObjects = FindObjectsOfType<MonoBehaviour>(true).OfType<IDataPersistence>();
 
         return new List<IDataPersistence>(dpObjects);
     }

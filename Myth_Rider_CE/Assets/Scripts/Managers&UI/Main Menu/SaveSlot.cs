@@ -16,6 +16,8 @@ public class SaveSlot : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _mapNameText;
     [SerializeField] private TextMeshProUGUI _skillPointText;
 
+    public bool _hasData { get; private set; } = false;
+
     private Button _saveSlotButton;
 
     private void Awake()
@@ -26,11 +28,13 @@ public class SaveSlot : MonoBehaviour
     {
         if (data == null)
         {
+            _hasData = false;
             _noDataCont.SetActive(true);
             _hasDataCont.SetActive(false);
         }
         else
         {
+            _hasData = true;
             _noDataCont.SetActive(false);
             _hasDataCont.SetActive(true);
 
