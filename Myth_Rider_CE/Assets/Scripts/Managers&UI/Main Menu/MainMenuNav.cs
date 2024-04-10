@@ -48,6 +48,7 @@ public class MainMenuNav : MenuSelect
     public void ContinueGame()
     {
         DisableMenuButtons();
+        DPManager._instance.SaveGame();
         SceneManager.LoadSceneAsync(2);
     }
 

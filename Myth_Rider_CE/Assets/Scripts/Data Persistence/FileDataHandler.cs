@@ -10,13 +10,14 @@ public class FileDataHandler
 
     private string _dataFileName = "";
 
+    private readonly string _backupExtension = ".back";
     public FileDataHandler(string dataDirPath, string dataFileName)
     {
         this._dataDirPath = dataDirPath;
         this._dataFileName = dataFileName;
     }
 
-    public GameData Load(string profileID)
+    public GameData Load(string profileID, bool allowRestoreFromBackup = true)
     {
         if(profileID == null)
         {
@@ -44,7 +45,21 @@ public class FileDataHandler
             }
             catch (Exception e)
             {
-                Debug.LogError("Error occured when trying to load data to file: " + fullPath + "\n" + e);
+                if(allowRestoreFromBackup)
+                {
+                    Debug.LogWarning("Failed to load data file. Attempting to roll back.\n" + e);
+                    bool rollBackSuccess = AttemptRollback(fullPath);
+                    if (rollBackSuccess)
+                    {
+                        loadedData = Load(profileID, false);
+                    }
+                }
+                else
+                {
+                    Debug.LogError("Error occured when trying to load file at path: " + fullPath + " and backup did not work.\n" + e);
+                }
+
+                //Debug.LogError("Error occured when trying to load data to file: " + fullPath + "\n" + e);
             }
         }
         return loadedData;
@@ -57,6 +72,8 @@ public class FileDataHandler
         }
         //string fullPath = _dataDirPath + "/" + _dataFileName;
         string fullPath = Path.Combine(_dataDirPath, profileID, _dataFileName);
+        string backupFilePath = fullPath + _backupExtension;
+
         try
         {
             Directory.CreateDirectory(Path.GetDirectoryName(fullPath));
@@ -70,6 +87,18 @@ public class FileDataHandler
                     writer.Write(dataToStore);
                 }
             }
+
+            GameData verifiedGameData = Load(profileID);
+
+            if(verifiedGameData != null)
+            {
+                File.Copy(fullPath, backupFilePath, true);
+            }
+            else
+            {
+                throw new Exception("Save file could not be verified and backup could not be created.");
+            }
+
         }
         catch (Exception e)
         {
@@ -144,5 +173,31 @@ public class FileDataHandler
             }
         }
         return mostRecentProfileID;
+    }
+
+    private bool AttemptRollback(string fullPath)
+    {
+        bool success = false;
+        string backupFilePath = fullPath + _backupExtension;
+        try
+        {
+            if(File.Exists(backupFilePath))
+            {
+                File.Copy(backupFilePath, fullPath, true);
+                success = true;
+                Debug.LogWarning("Had to roll back to backup file at: " + backupFilePath);
+            }
+            else
+            {
+                throw new Exception("Tried to roll back, but no backup file exists to roll back to.");
+            }
+        }
+        catch(Exception e)
+        {
+            Debug.LogError("Error occured when trying to roll back to backup file at: " + backupFilePath + "\n" + e);
+        }
+
+
+        return success;
     }
 }
